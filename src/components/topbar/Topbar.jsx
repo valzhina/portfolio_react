@@ -1,15 +1,16 @@
 import "./topbar.scss"
 import { PersonPin, LinkedIn } from '@mui/icons-material';
 
-export default function Topbar() {
+export default function Topbar({menuOpen, setMenuOpen}) {
     return (
-        <div className="topbar">
+        <div className={"topbar " + (menuOpen && "active") }> {/*if const menuOpen == True that we got from App.isx --> active appear in the output */}
+            
             <div className="wrapper">
                 <div className="left">
-                    <a href="#intro" className="left_corner">software enineer</a>
+                    <a href="#intro" className="left_corner">software engineer</a>
                     <div className="itemContainer"> {/*.itemContainer */}
                         <PersonPin className="icon"/>
-                        <span>valzhinapisku@gmail.com</span>
+                        <span>valzhinapiskun@gmail.com</span>
                     </div> 
                     <div className="itemContainer"> {/*.itemContainer */}
                         <LinkedIn className="icon"/>
@@ -18,7 +19,11 @@ export default function Topbar() {
                     {/* <h1>Hello</h1>  */}
                 </div>
                 <div className="right">
-                    this is a test
+                    <div className="threeLines" onClick={()=>setMenuOpen(!menuOpen)}> {/*creates on click event and run function...*/}
+                        <span classNme="line1"></span>
+                        <span classNme="line2"></span>
+                        <span classNme="line3"></span>
+                    </div>
                 </div> 
             </div>
         </div>
