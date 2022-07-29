@@ -8,7 +8,7 @@
         position: relative;
         top: 70px;
         scroll-behavior: smooth; 
-        scroll-snap-type: y; //adjusts per one section on screen
+        scroll-snap-type: y; //adjusts per one section on screen (y mandatory ...for fast section snap)
         scrollbar-width: none;  //for firefox removes scrollbar
         &::-webkit-scrollbar{ //for all other browsers removes scrollbar
             display: none;
