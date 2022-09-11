@@ -10,10 +10,10 @@ export default function Intro() {
         console.log(textRef.current);
         init(textRef.current, { 
             showCursor: false, 
-            backDelay: 1500,
-            backSpeed: 30,
+            backDelay: 700,
+            backSpeed: 20,
             // showCursor: true,
-            strings: ["React Developer","Python Engineer","Full stack Engineer","Designer"],
+            strings: ["React Developer","Python Engineer","Full Stack Engineer","Designer"],
         }); 
     },[]);
 
