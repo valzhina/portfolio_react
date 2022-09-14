@@ -1,35 +1,76 @@
-import "./portfolio.scss"
+import { useEffect, useState } from "react";
+import PortfolioList from "../portfolioList/PortfolioList";
+import "./portfolio.scss";
+import { featuredPortfolio,
+    fullStack,
+    frontEnd,
+    backEnd,} from '../../data'; 
 
 export default function Portfolio() {
+    const [selected, setSelected] = useState("featured");
+    const [data, setData] = useState([]);
+    const list = [
+        {
+            id: "featured",
+            title: "Featured",
+        },
+        {
+            id: "fullstack",
+            title: "Full Stack",
+        },
+        { 
+            id: "frontend",
+            title: "Front End",
+        },
+        {
+            id: "backend",
+            title: "Back End",
+        },
+    ];
+
+    useEffect(() => {
+        switch(selected) {
+            case 'featured':
+                setData(featuredPortfolio);
+                break;
+            case 'fullstack':
+                setData(fullStack); 
+                break;
+            case 'frontend':
+                setData(frontEnd);
+                break;
+            case 'backend':
+                setData(backEnd);
+                break;
+            default:
+                setData(featuredPortfolio);
+        }
+    }, [selected]);
+
     return (
         <div className='portfolio' id='portfolio'>
             <h1>Portfolio</h1>
-            <ul>
-                <li className="active">Featured</li>
-                <li>Full Stack</li>
-                <li>Front End</li>
-                <li>Back End</li>
+            <ul> 
+                {list.map((item) => (
+                    <PortfolioList  
+                        title={item.title} 
+                        active={selected === item.id} 
+                        setSelected={setSelected} 
+                        id={item.id}
+                    />
+                ))}
             </ul>
             <div className="container">
-                <div className="item">
-                    {/* <img src="assets/fertillity_app_homePage.gif" alt="" />  */}
-                    <img src="assets/fertillity_app_homeScreen.png" alt="" /> 
-                    {/* <img src="https://issuu.com/valzhina/docs/vp_papar_portfolio_2015_spreads_for" alt="" />  */}
-                    <h3>Fertility App</h3>
-                </div>
-                <div className="item">
-                    <img src="assets/fertillity_app_homeScreen.png" alt="" /> 
-                    <h3>Fertility App</h3>
-                </div>
-                <div className="item">
-                    <img src="assets/fertillity_app_homeScreen.png" alt="" /> 
-                    <h3>Fertility App</h3>
-                </div>
-                <div className="item">
-                    <img src="assets/fertillity_app_homeScreen.png" alt="" /> 
-                    <h3>Fertility App</h3>
-                </div>
-            </div>
+                {data.map((d) => (
+                    <div className="item">
+                        <img 
+                        src={d.img} 
+                        alt="" 
+                        /> 
+                        <h3>{d.title}</h3>
+                    </div>
+                ))}
+            </div> 
         </div>
-    )
+    );
 }
